@@ -1,10 +1,14 @@
-import React from 'react';
+import React from "react";
+// import NavBar from "./Components/NavBar/NavBar";
+// import Item from "./Components/Item/Item";
 
 function App() {
   return (
-    <div className="App">
-      Hello world
-    </div>
+    <>
+      {/* <Item /> */}
+
+      {/* <NavBar /> */}
+    </>
   );
 }
 
