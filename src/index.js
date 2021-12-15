@@ -1,12 +1,13 @@
+// import { ThemeProvider } from "@mui/styles";
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
-import Nav from "./Components/NavBar/NavBar";
+// import Nav from "./Components/NavBar/NavBar";
 import reportWebVitals from "./reportWebVitals";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Nav />
+    {/* <Nav /> */}
     <App />
   </React.StrictMode>,
   document.getElementById("root")

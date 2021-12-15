@@ -1,14 +1,15 @@
+import { ThemeProvider } from "@mui/styles";
 import React from "react";
-// import NavBar from "./Components/NavBar/NavBar";
-// import Item from "./Components/Item/Item";
+import NavBar from "./Components/NavBar/NavBar";
+import Item from "./Components/Item/Item";
+import theme from "./Theme";
 
 function App() {
   return (
-    <>
-      {/* <Item /> */}
-
-      {/* <NavBar /> */}
-    </>
+    <ThemeProvider theme={theme}>
+      <NavBar />
+      <Item />;
+    </ThemeProvider>
   );
 }
 

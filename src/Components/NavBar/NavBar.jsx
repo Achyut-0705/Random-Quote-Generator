@@ -11,7 +11,7 @@ const useStyles = makeStyles(theme => ({
     nav: {
         display: 'flex',
         justifyContent: 'flex-end',
-        backgroundColor: 'white'
+        backgroundColor: 'white',
     }
 }));
 
@@ -23,11 +23,12 @@ export default function ButtonAppBar() {
     const classes = useStyles();
 
     return (
-        <AppBar position="fixed">
+        <AppBar position="sticky" >
             <Toolbar className={classes.nav}>
                 {/* hello */}
                  <Button 
-                    variant="outlined" 
+                    variant="text" 
+                    style={{ color: '#333333' }}
                     size="small"
                     endIcon={<AutoRenewIcon />} 
                     onClick={handleClick}>
