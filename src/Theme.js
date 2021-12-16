@@ -1,4 +1,3 @@
-import { orange } from "@mui/material/colors";
 import { createTheme } from "@mui/material/styles";
 
 const theme = createTheme({
@@ -9,8 +8,11 @@ const theme = createTheme({
       },
     },
   },
-  status: {
-    danger: orange[500],
+  typography: {
+    fontFamily: "'Raleway', 'sans-serif'",
+  },
+  button: {
+    textTransform: "none",
   },
 });
 

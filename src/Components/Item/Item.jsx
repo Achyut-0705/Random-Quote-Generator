@@ -1,28 +1,28 @@
-import React from 'react'
-// import { ThemeProvider } from '@mui/styles'
-import { makeStyles } from '@mui/styles';
-import { Container } from '@mui/material';
-import theme from '../../Theme';
+import React from "react";
+import { makeStyles } from "@mui/styles";
+import { Typography } from "@mui/material";
+import theme from "../../Theme";
 
-const useStyles = makeStyles(() => ({
-    container:{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        height: '100vh',
-        backgroundColor: 'red',
-        [theme.breakpoints.down("sm")]:{
-        }
-    },
+const useStyles = makeStyles((theme) => ({
+  wrapper: {
+    paddingLeft: theme.spacing(3),
+    width: "30%",
+  },
 }));
 
-function Item() {
-    const classes = useStyles();
-    return (
-        <Container className={classes.container} maxWidth="md">
+// borderLeft:boolean -->  "5px solid #F7DF94" : null --> for left border
+// innerText: string  --> inner text to show inside of typography
+// bold: boolean -->
 
-        </Container>
-    )
+export default function Item(props) {
+  const classes = useStyles();
+  const styles = {
+    borderLeft: props.leftHandle ? "5px solid #F7DF94" : "",
+    fontWeight: props.bold ? theme.typography.fontWeightBold : "",
+  };
+  return (
+    <Typography variant="h6" className={classes.wrapper} style={styles}>
+      {props.innerText}
+    </Typography>
+  );
 }
-
-export default Item
