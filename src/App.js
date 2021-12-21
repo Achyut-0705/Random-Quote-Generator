@@ -5,6 +5,7 @@ import Item from "./Components/Item/Item";
 import theme from "./Theme";
 import Author from "./Components/Author/Author";
 import { Backdrop, CircularProgress } from "@mui/material";
+import { Box } from "@mui/system";
 
 const useStyle = makeStyles({
   container: {
@@ -14,7 +15,9 @@ const useStyle = makeStyles({
     justifyContent: "center",
     alignItems: "center",
     flexDirection: "column",
-    overflow: "hidden",
+    maxHeight: "100%",
+    overflowY: "auto",
+    margin: "auto",
   },
   author: {
     width: "100%",
@@ -32,16 +35,18 @@ async function getRandomQuote() {
 }
 
 async function getQuoteFromAuthor(auth) {
-  const url = `https://api.quotable.io/quotes?author=Walter+Lippmann`;
+  const url = `https://api.quotable.io/quotes?author=${auth}`;
   const result = await fetch(url);
   const data = await result.json();
-  return data.data;
+  return data.results;
 }
 
 function App() {
   const classes = useStyle();
 
   const [open, setOpen] = useState(false);
+  const [list, setList] = useState(false);
+  const [quotes, setQuotes] = useState([]);
   const [quote, setQuote] = useState(() => {
     const data = {
       content: "",
@@ -52,15 +57,22 @@ function App() {
   });
 
   const handleClick = () => {
-    getQuoteFromAuthor(quote.author).then((val) => console.log(val));
+    setOpen(true);
+    const author = quote.author;
+    getQuoteFromAuthor(author).then((result) => {
+      setList(true);
+      setOpen(false);
+      setQuotes(result);
+      console.log(result);
+    });
   };
 
   const refresh = () => {
     setOpen(true);
+    setList(false);
     getRandomQuote().then((val) => {
       setOpen(false);
       setQuote(val);
-      // console.log(val);
     });
   };
 
@@ -70,17 +82,37 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <NavBar handleClick={refresh} />
-      <div className={classes.container}>
-        <Item innerText={quote.content} leftHandle={true} />
-        <div className={classes.author}>
-          <Author
-            handleClick={handleClick}
-            authorName={quote.author}
-            genre={quote.tags.length > 1 ? quote.tags[1] : quote.tags[0]}
-          />
+      <Box>
+        <NavBar handleClick={refresh} />
+      </Box>
+      {!list && (
+        <div className={classes.container}>
+          <Item innerText={quote.content} leftHandle={true} />
+          <div className={classes.author}>
+            <Author
+              handleClick={handleClick}
+              authorName={quote.author}
+              genre={quote.tags.length > 1 ? quote.tags[1] : quote.tags[0]}
+            />
+          </div>
         </div>
-      </div>
+      )}
+
+      {list && (
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <h1>{quote.author}</h1>
+          {quotes.map((item) => (
+            <Item innerText={item.content} leftHandle={true} />
+          ))}
+        </Box>
+      )}
       <Backdrop
         sx={{ color: "#fff", zIndex: theme.zIndex.drawer + 1 }}
         open={open}
