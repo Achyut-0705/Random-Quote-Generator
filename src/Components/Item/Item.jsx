@@ -6,7 +6,13 @@ import theme from "../../Theme";
 const useStyles = makeStyles((theme) => ({
   wrapper: {
     paddingLeft: theme.spacing(3),
-    width: "30%",
+    width: "50%",
+    [theme.breakpoints.down("md")]: {
+      fontSize: "0.8rem",
+    },
+    [theme.breakpoints.down("sm")]: {
+      width: "80%",
+    },
   },
 }));
 
@@ -17,11 +23,12 @@ const useStyles = makeStyles((theme) => ({
 export default function Item(props) {
   const classes = useStyles();
   const styles = {
+    ...classes,
     borderLeft: props.leftHandle ? "5px solid #F7DF94" : "",
     fontWeight: props.bold ? theme.typography.fontWeightBold : "",
   };
   return (
-    <Typography variant="h6" className={classes.wrapper} style={styles}>
+    <Typography variant="h6" className={classes.wrapper} style={styles} mb={5}>
       {props.innerText}
     </Typography>
   );

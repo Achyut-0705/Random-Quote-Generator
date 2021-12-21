@@ -1,12 +1,8 @@
 import * as React from "react";
-// import Box from '@mui/material/Box';
 import AutoRenewIcon from "@mui/icons-material/Autorenew";
 import Button from "@mui/material/Button";
-// import { makeStyles } from '@mui/styles';
 import { makeStyles } from "@mui/styles";
-// import { styled } from "@mui/system";
 import { AppBar, Toolbar } from "@mui/material";
-// import MenuIcon from '@mui/icons-material/Menu';
 
 const useStyles = makeStyles(() => ({
   nav: {
@@ -16,23 +12,21 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-export default function ButtonAppBar() {
-  const handleClick = () => {
-    console.log("refresh");
-  };
-
+function ButtonAppBar(props) {
   const classes = useStyles();
 
   return (
-    <AppBar position="sticky" sx={{ boxShadow: "none", width: "100vw" }}>
+    <AppBar
+      position="sticky"
+      sx={{ boxShadow: "none", width: "100vw", margin: "0", padding: "0" }}
+    >
       <Toolbar className={classes.nav}>
-        {/* hello */}
         <Button
           variant="text"
           style={{ color: "#333333" }}
           size="large"
           endIcon={<AutoRenewIcon />}
-          onClick={handleClick}
+          onClick={props.handleClick}
           sx={{ textTransform: "lowercase" }}
         >
           Refresh
@@ -41,3 +35,5 @@ export default function ButtonAppBar() {
     </AppBar>
   );
 }
+
+export default ButtonAppBar;
