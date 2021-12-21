@@ -8,7 +8,7 @@
       Demo
     </a>
     <span> | </span>
-    <a href="https://github.com/Achyut-0705/Random-Quote-Generator">
+    <a href="https://devchallenges.io/solutions/IYIlFmLLmpEwYMMi4iJe">
       Solution
     </a>
     <span> | </span>
