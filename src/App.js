@@ -25,6 +25,15 @@ const useStyle = makeStyles({
     justifyContent: "center",
     alignItems: "center",
   },
+  footer: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    // position: "fixed",
+    // bottom: "0",
+    // left: "0",
+    width: "100%",
+  },
 });
 
 async function getRandomQuote() {
@@ -119,6 +128,7 @@ function App() {
       >
         <CircularProgress />
       </Backdrop>
+      <footer className={classes.footer}>Created by Achyut ❤️</footer>
     </ThemeProvider>
   );
 }
